@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://schema.buildwithfern.dev/docs-yml.json
+
+instances:
+  - url: christophe-my-social-networks-api.docs.buildwithfern.com
+title: My Social Networks API  | Documentation
+layout:
+  searchbar-placement: header
+  page-width: full
+navigation:
+  - api: My Social Networks API
+    slug: my-social-networks-api
+    flattened: false
+    layout:
+      - Système:
+          summary: docs/pages/syst-me-overview.mdx
+      - 1 · Utilisateurs:
+          summary: docs/pages/1-utilisateurs-overview.mdx
+      - 2 · Groupes:
+          summary: docs/pages/2-groupes-overview.mdx
+      - 3 · Événements:
+          summary: docs/pages/3-v-nements-overview.mdx
+      - 4 · Fils de discussion:
+          summary: docs/pages/4-fils-de-discussion-overview.mdx
+      - 5 · Albums photo:
+          summary: docs/pages/5-albums-photo-overview.mdx
+      - 6 · Sondages:
+          summary: docs/pages/6-sondages-overview.mdx
+      - 7 · Billetterie:
+          summary: docs/pages/7-billetterie-overview.mdx
+      - 8 · Shopping list:
+          summary: docs/pages/8-shopping-list-overview.mdx
+      - 9 · Covoiturage (bonus):
+          summary: docs/pages/9-covoiturage-bonus-overview.mdx
+      - 10 · Suppressions:
+          summary: docs/pages/10-suppressions-overview.mdx
+    summary: docs/pages/collection-overview.mdx
+colors:
+  accent-primary:
+    light: "#008700"
+    dark: "#36B7E6"
+  background:
+    light: "#FFFFFF"
+    dark: "#111113"
+  border:
+    light: "#E5E7EB"
+    dark: "#222325"
+theme:
+  page-actions: toolbar
+  footer-nav: minimal
+logo:
+  dark: docs/assets/logo-dark.svg
+  light: docs/assets/logo.svg
+  height: 20
+favicon: docs/assets/favicon.svg
+css:
+  - styles.css
+  - docs/assets/onboarding-theme.css
+typography:
+  headingsFont:
+    name: Inter
+  bodyFont:
+    name: Inter

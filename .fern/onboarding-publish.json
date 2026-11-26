@@ -1,0 +1,10 @@
+{
+  "desiredContentHash": "623af50d5e20e5cf4508b1a117878f8e74ba268c206a32467f8c5bee39f36473",
+  "docsUrl": "https://christophe-my-social-networks-api.docs.buildwithfern.com",
+  "starter": {
+    "repoOwner": "fern-api",
+    "repoName": "docs-starter-internal",
+    "commitSha": "572bf89d934c52de747c1fad185136827eeb0ce7",
+    "label": "2026-11-19-layout3-centered-tabs"
+  }
+}
