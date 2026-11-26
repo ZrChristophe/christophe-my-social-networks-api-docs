@@ -2,4 +2,28 @@
 title: Overview
 ---
 
-Vérification de disponibilité.
+API REST du projet **My Social Networks** (Node.js 18, Express, MongoDB/Mongoose) : utilisateurs, groupes, événements, fils de discussion, albums photo, sondages, billetterie, shopping list et covoiturage.
+
+## **URL de base**
+
+`{{baseUrl}}` = `http://localhost:3000`
+
+## **Format**
+
+- Requêtes et réponses en **JSON** (`Content-Type: application/json`).
+- Chaque ressource renvoie un champ `id` (ObjectId MongoDB).
+- Les dates sont au format ISO 8601, par exemple `2026-12-15T19:00:00.000Z`.
+
+## **Erreurs**
+
+Toutes les erreurs ont la forme `{ "code": , "message": "..." }` :
+
+- **400** : données manquantes ou invalides, ou règle métier non respectée
+- **403** : l’utilisateur n’a pas le droit de faire cette action
+- **404** : ressource introuvable
+- **409** : conflit (doublon : email, vote, billet, article…)
+- **500** : erreur serveur
+
+## **Utilisation**
+
+Les requêtes « Créer » enregistrent automatiquement l’id renvoyé dans une variable de collection (`{{userId}}`, `{{eventId}}`…). Pour dérouler un scénario complet, lance les requêtes **« Créer »** de chaque dossier **dans l’ordre des dossiers** (Users → Groups → Events → …). Garde les requêtes **« Supprimer »** pour la fin, sinon les ressources suivantes n’auront plus d’utilisateur ou d’événement auquel se rattacher.Vérification de disponibilité.
