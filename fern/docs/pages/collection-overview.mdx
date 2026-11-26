@@ -2,20 +2,36 @@
 title: Overview
 ---
 
-# My Social Networks API (v2)
+***
 
-API REST (JSON) pour créer et gérer des **événements**, des **groupes**, des **fils de discussion**, des **albums photo**, des **sondages**, une **billetterie**, une **shopping list** et du **covoiturage**.
+API REST du projet **My Social Networks** (Node.js 18, Express, MongoDB/Mongoose) : utilisateurs, groupes, événements, fils de discussion, albums photo, sondages, billetterie, shopping list et covoiturage.
 
-## Conventions
-- **Base URL** : variable `{{baseUrl}}` (par défaut `http://localhost:3000`).
-- **Format** : requêtes et réponses en `application/json`. Dates en ISO 8601 avec fuseau (`2027-06-12T18:00:00Z`).
-- **Réponse simple** : `{ "data": { ... } }` — **Liste** : `{ "data": [ ... ], "meta": { "page", "limit", "total", "pages" } }`.
-- **Erreur** : `{ "error": { "status", "message", "details": [ { "field", "message" } ] } }`.
-- **CRUDS** : *Create* (`POST`), *Read* (`GET /ressource/:id`), *Update* (`PUT` complet / `PATCH` partiel), *Delete* (`DELETE` → 204), *Search* (`GET /ressource?q=…`).
-- **Pagination / tri** : `?page=1&limit=20` (limit max 100), `?sort=-created_at,name` (préfixe `-` = décroissant).
-- **Recherche & filtres** : `?q=texte` + filtres propres à chaque liste (voir chaque requête).
-- **Codes** : 200, 201, 204, 304 (ETag), 400 (JSON/paramètre invalide), 403 (droit insuffisant), 404, 409 (conflit de règle métier), 422 (validation).
-- **Authentification** : hors périmètre du cahier des charges. L'utilisateur agissant est identifié par un identifiant dans le corps (`author_id`, `user_id`…). `viewer_id` permet de simuler la visibilité des groupes secrets / événements privés.
+## URL de base
 
-## Ordre conseillé
-Les dossiers sont ordonnés : exécutez la collection avec le **Collection Runner** (les ids créés sont stockés dans les variables de collection).
+`{{baseUrl}}` = `http://localhost:3000`
+
+## Format
+
+\* Requêtes et réponses en **JSON** (`Content-Type: application/json`).
+
+\* Chaque ressource renvoie un champ `id` (ObjectId MongoDB).
+
+\* Les dates sont au format ISO 8601, par exemple `2026-12-15T19:00:00.000Z`.
+
+## Erreurs
+
+Toutes les erreurs ont la forme `{ "code": , "message": "..." }` :
+
+\* **400** : données manquantes ou invalides, ou règle métier non respectée
+
+\* **403** : l'utilisateur n'a pas le droit de faire cette action
+
+\* **404** : ressource introuvable
+
+\* **409** : conflit (doublon : email, vote, billet, article…)
+
+\* **500** : erreur serveur
+
+## Utilisation
+
+Les requêtes « Créer » enregistrent automatiquement l'id renvoyé dans une variable de collection (`{{userId}}`, `{{eventId}}`…). Pour dérouler un scénario complet, lance les requêtes **« Créer »** de chaque dossier **dans l'ordre des dossiers** (Users → Groups → Events → …). Garde les requêtes **« Supprimer »** pour la fin, sinon les ressources suivantes n'auront plus d'utilisateur ou d'événement auquel se rattacher.
